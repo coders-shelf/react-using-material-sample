@@ -1,6 +1,6 @@
 import { createMuiTheme } from "@material-ui/core/styles";
 
-const lightTheme = createMuiTheme({
+const defaultTheme = createMuiTheme({
   typography: {
     h1: {
       fontSize: "2rem",
@@ -13,4 +13,4 @@ const lightTheme = createMuiTheme({
   }
 });
 
-export default lightTheme;
+export default defaultTheme;
