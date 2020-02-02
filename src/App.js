@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useContext, useEffect } from "react";
+import { ThemeProvider } from "@material-ui/core/styles";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import Container from "@material-ui/core/Container";
+import CustomBar from "./components/CustomBar";
+import DemoContents from "./components/DemoContents";
+import { ThemeContext } from "./theme/themeContext";
 
-function App() {
+const App = () => {
+  const context = useContext(ThemeContext);
+  useEffect(() => {
+    const themeName = localStorage.getItem("theme");
+    if (themeName !== null) {
+      context.handleThemeChange(themeName);
+    }
+  }, [context]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={context.theme}>
+      <CssBaseline />
+      <CustomBar />
+      <Container maxWidth="sm">
+        <DemoContents />
+      </Container>
+    </ThemeProvider>
   );
-}
+};
 
 export default App;
